@@ -37,11 +37,15 @@ def gauss_jordan (ma,mb,x):
     for i in range(n):
         x[i] = mab[i][n]/mab[i][i]
 
-    # Displaying solution
+    #Colocar la prueba 
+    """
     print('\nRequired solution is: ')
     for i in range(n):
         print('X%d = %0.2f' %(i,x[i]), end = '\t')
+    """
 
+#El intento de comprobar:
+"""
 A = np.array([[2,3],
               [0,2]])
 
@@ -50,3 +54,4 @@ B = np.array([[4],
 x = np.zeros(2)
 
 print(gauss_jordan(A,B,x))
+"""
