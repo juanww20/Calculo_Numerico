@@ -26,7 +26,6 @@ def main (page:Page):
 
     #Ventana1
     #Funciones
-    #Identificar que si el ingreso esta correcto
     def ident ():
         ver = ent.value
         if ver.isdigit():
@@ -34,87 +33,10 @@ def main (page:Page):
         else:
             return False
     
-    #Validacion para binario
-    def identbn(num,b):
-        num = int(ent.value)
-        x = [int(a) for a in str(num)]
-        listaa =[]
-        i = 0
-        b = True
-        for i in range (len(x)):
-            listaa.append(x[i])
-            if listaa[i] != 0 and listaa[i] != 1:
-                b = False
-                tfr2.value = "Error"
-            i += 1
-        return b
-    
-    #Validacion para octal
-    def identbc(num,b):
-        num = int(ent.value)
-        x = [int(a) for a in str(num)]
-        listaa =[]
-        i = 0
-        b = True
-        for i in range (len(x)):
-            listaa.append(x[i])
-            if listaa[i] != 0 and listaa[i] != 1 and listaa[i] != 2 and listaa[i] != 3 and listaa[i] != 4 and listaa[i] != 5 and listaa[i] != 6 and listaa[i] != 7:
-                b = False
-                tfr2.value = "Error"
-            i += 1
-        return b
-    
-    #Validacion para hexadecimal
-    def identbd(b):
-        num = ent.value
-        x = [str(a) for a in str(num)]
-        listaa =[]
-        i = 0
-        b = True
-        for i in range (len(x)):
-            listaa.append(x[i])
-            if listaa[i] != "0" and listaa[i] != "1" and listaa[i] != "2" and listaa[i] != "3" and listaa[i] != "4" and listaa[i] != "5" and listaa[i] != "6" and listaa[i] != "7" and listaa[i] != "8" and listaa[i] != "9" and listaa[i] != "A" and listaa[i] != "a" and listaa[i] != "B" and listaa[i] != "b" and listaa[i] != "C" and listaa[i] != "c" and listaa[i] != "D" and listaa[i] != "d" and listaa[i] != "E" and listaa[i] != "e" and listaa[i] != "F" and listaa[i] != "f":
-                b = False
-                tfr2.value = "Error"
-            i += 1
-        return b
-    
-    #Validacion para terciario
-    def identerciaro(b):
-        num = int(ent.value)
-        x = [int(a) for a in str(num)]
-        listaa =[]
-        i = 0
-        b = True
-        for i in range (len(x)):
-            listaa.append(x[i])
-            if listaa[i] != 0 and listaa[i] != 1 and listaa[i] != 2:
-                b = False
-                tfr2.value = "Error"
-            i += 1
-        return b
-    
-    #Validacion para cuaternario
-    def identcuaternario(b):
-        num = int(ent.value)
-        x = [int(a) for a in str(num)]
-        listaa =[]
-        i = 0
-        b = True
-        for i in range (len(x)):
-            listaa.append(x[i])
-            if listaa[i] != 0 and listaa[i] != 1 and listaa[i] != 2 and listaa[i] != 3:
-                b = False
-                tfr2.value = "Error"
-            i += 1
-        return b
-    
-    #Decir error por el ingreso
     def error():
         result.value="Por favor ingresar caracteres correctos"
         page.update()
-    
-    #Operación
+
     def cav (e):
         estado = opcion.value
         band = ident()
@@ -129,15 +51,9 @@ def main (page:Page):
         elif estado == "2 Binario a decimal":
             if band == True:
                 num = ent.value
-                num2 = int(num)
-                b = True
-                b = identbn(num2,b)
-                if b == True:
-                    rr = int(num,2)
-                    result.value = str(rr)
-                    result.update()
-                else:
-                    error()
+                rr = int(num,2)
+                result.value = str(rr)
+                result.update()
             else:
                 error()
         elif estado == "3 Decimal a Octal":
@@ -151,15 +67,9 @@ def main (page:Page):
         elif estado == "4 Octal a decimal":
             if band == True:
                 num = ent.value
-                num2 = int(num)
-                b = True
-                b = identbc(num2,b)
-                if b == True:
-                    rr = int(num,8)
-                    result.value = str(rr)
-                    result.update()
-                else:
-                    error()
+                rr = int(num,8)
+                result.value = str(rr)
+                result.update()
             else:
                 error()
         elif estado == "5 Decimal a Hexadecimal":
@@ -172,14 +82,9 @@ def main (page:Page):
                 error()
         elif estado == "6 Hexadecimal a Decimal":
                 num = ent.value
-                b = True
-                b = identbd(b)
-                if b == True:
-                    rr = int(num,16)
-                    result.value = str(rr)
-                    result.update()
-                else:
-                    error()
+                rr = int(num,16)
+                result.value = str(rr)
+                result.update()
         elif estado == "7 Decimal a Cuaternario":
             if band == True:
                 num = int(ent.value)
@@ -197,18 +102,13 @@ def main (page:Page):
             if band == True:
                 num = int(ent.value)
                 i = tras = 0
-                b = True
-                b = identcuaternario(b)
-                if b == True:
-                    while num > 0:
-                        digito = num%10
-                        num = int(num//10)
-                        tras += digito*(4**i)
-                        i = i +1
-                    result.value = tras
-                    result.update()
-                else:
-                    error()
+                while num > 0:
+                    digito = num%10
+                    num = int(num//10)
+                    tras += digito*(4**i)
+                    i = i +1
+                result.value = tras
+                result.update()
             else:
                 error()
         elif estado == "9 Decimal a Terciario":
@@ -228,18 +128,13 @@ def main (page:Page):
             if band == True:
                 num = int(ent.value)
                 i = tras = 0
-                b = True
-                b = identerciaro(b)
-                if b == True:
-                    while num > 0:
-                        digito = num%10
-                        num = int(num//10)
-                        tras += digito*(3**i)
-                        i = i +1
-                    result.value = tras
-                    result.update()
-                else:
-                    error()
+                while num > 0:
+                    digito = num%10
+                    num = int(num//10)
+                    tras += digito*(3**i)
+                    i = i +1
+                result.value = tras
+                result.update()
             else:
                 error()
         
@@ -292,7 +187,7 @@ def main (page:Page):
         b = len(x)
         for i in range(b):
             if a[i][i] == 0.0:
-                tfr2.value = 'No se puede iniciando con numero 0!'
+                tfr2.value = 'No se puede dividirse por los numeros ceros!'
                 
             for j in range(b):
                 if i != j:
@@ -309,34 +204,27 @@ def main (page:Page):
             tfr2.value += "X" + str(i+1) + ": " + str(aux_num) + "\n"
 
     def aleatorio_matriz (e):
-        verificar = tfi.value
-        if verificar.isdigit():
-            c = int(tfi.value)
-            mx = np.zeros((c,c+1))
-            mr = np.zeros(c)
-            tfr1.value = ""
+        c = int(tfi.value)
+        mx = np.zeros((c,c+1))
+        mr = np.zeros(c)
+        tfr1.value = ""
 
-            for i in range (len(mx)):
-                for j in range(len(mx[0])):
-                    mx[i][j] = randint(1,100)
-            
-            aux = len(mx[0]) -1
-            aux2 = len(mx[0])
-            for i in range (len(mx)):
-                for j in range(aux):
-                    if j == (aux-1):
-                        tfr1.value += str(mx[i][j]) + "x" + "(" + str(j+1) + ")"
-                    else:
-                        tfr1.value += str(mx[i][j]) + "x" + "(" + str(j+1) + ")" + " + "
-                tfr1.value += "= "+ str(mx[i][aux2-1])
-                tfr1.value += "\n"
-            Gauss_Jordan(mx,mr)
-            page.update()
-        else:
-            tfr2.value = ""
-            tfr1.value = ""
-            tfr2.value = "Invalido de ingreso"
-            page.update()
+        for i in range (len(mx)):
+            for j in range(len(mx[0])):
+                mx[i][j] = randint(1,100)
+        
+        aux = len(mx[0]) -1
+        aux2 = len(mx[0])
+        for i in range (len(mx)):
+            for j in range(aux):
+                if j == (aux-1):
+                    tfr1.value += str(mx[i][j]) + "x" + "(" + str(j+1) + ")"
+                else:
+                    tfr1.value += str(mx[i][j]) + "x" + "(" + str(j+1) + ")" + " + "
+            tfr1.value += "= "+ str(mx[i][aux2-1])
+            tfr1.value += "\n"
+        Gauss_Jordan(mx,mr)
+        page.update()
         
     def borrar (e):
         tfr1.value = ""
