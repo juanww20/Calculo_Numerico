@@ -39,7 +39,7 @@ def gauss_jordan (ma,mb,x):
 
     #Colocar la prueba 
     """
-    print('\nRequired solution is: ')
+    print('\nLa solucion es: ')
     for i in range(n):
         print('X%d = %0.2f' %(i,x[i]), end = '\t')
     """
