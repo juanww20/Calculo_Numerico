@@ -9,9 +9,29 @@ def main (page:ft.Page):
     page.window_center()
     page.update()
 
-    tf = ft.TextButton("Cambiar")
+    #Tipos de label
+    tf1 = ft.Text("Estas feliz?",theme_style=ft.TextThemeStyle.DISPLAY_MEDIUM)
+    tf2 = ft.Text("Biennnn!",theme_style=ft.TextThemeStyle.DISPLAY_LARGE)
 
-    contf = ft.Container(ft.Row([tf],alignment=ft.MainAxisAlignment.CENTER))
+    #Contenedor
+    cont1 = ft.Container(ft.Row([tf1]))
+    cont2 = ft.Container(ft.Row([tf2]))
+
+    #Boton de cambiar y la muestra de cambio
+    animate = ft.AnimatedSwitcher(cont1,
+        transition=ft.AnimatedSwitcherTransition.ROTATION,
+        duration = 500,
+        reverse_duration= 100,
+        switch_in_curve=ft.AnimationCurve.BOUNCE_OUT
+    )
+
+    def donghua (e):
+        animate.content = cont2 if animate.content == cont1 else cont1
+        animate.update()
+    
+    tf = ft.TextButton("¡SI!",on_click=donghua)
+
+    contf = ft.Container(ft.Row([animate,tf],alignment=ft.MainAxisAlignment.CENTER))
 
     page.add(contf)
 ft.app(main)
