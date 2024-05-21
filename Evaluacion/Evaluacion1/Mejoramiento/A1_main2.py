@@ -3,6 +3,7 @@ import flet as ft
 from random import *
 import numpy as np
 from Validacion import *
+from Ven2 import *
 
 def main (page:Page):
 
@@ -27,6 +28,8 @@ def main (page:Page):
     ]
     )
 
+    #Ventana 1
+    #FUNCIONES DE PRINCIPAL
     #Decir error por el ingreso
     def error():
         result.value="Por favor ingresar caracteres correctos"
@@ -49,7 +52,7 @@ def main (page:Page):
                 num = ent.value
                 num2 = int(num)
                 b = True
-                b = identbn(num2,b)
+                b = identbn(num2,b,ent,tfr2)
                 if b == True:
                     rr = int(num,2)
                     result.value = str(rr)
@@ -71,7 +74,7 @@ def main (page:Page):
                 num = ent.value
                 num2 = int(num)
                 b = True
-                b = identbc(num2,b)
+                b = identbc(num2,b,ent,tfr2)
                 if b == True:
                     rr = int(num,8)
                     result.value = str(rr)
@@ -91,7 +94,7 @@ def main (page:Page):
         elif estado == "6 Hexadecimal a Decimal":
                 num = ent.value
                 b = True
-                b = identbd(b)
+                b = identbd(b,ent,tfr2)
                 if b == True:
                     rr = int(num,16)
                     result.value = str(rr)
@@ -116,7 +119,7 @@ def main (page:Page):
                 num = int(ent.value)
                 i = tras = 0
                 b = True
-                b = identcuaternario(b)
+                b = identcuaternario(b,ent,tfr2)
                 if b == True:
                     while num > 0:
                         digito = num%10
@@ -147,7 +150,7 @@ def main (page:Page):
                 num = int(ent.value)
                 i = tras = 0
                 b = True
-                b = identerciaro(b)
+                b = identerciaro(b,ent,tfr2)
                 if b == True:
                     while num > 0:
                         digito = num%10
@@ -206,26 +209,6 @@ def main (page:Page):
 
     #Ventana2
     #Funciones
-    def Gauss_Jordan (a,x):
-        b = len(x)
-        for i in range(b):
-            if a[i][i] == 0.0:
-                tfr2.value = 'No se puede iniciando con numero 0!'
-                
-            for j in range(b):
-                if i != j:
-                    ratio = a[j][i]/a[i][i]
-
-                    for k in range(b+1):
-                        a[j][k] = a[j][k] - ratio * a[i][k]
-
-        for i in range(b):
-            x[i] = a[i][b]/a[i][i]
-        tfr2.value = ""
-        for i in range (len(x)):
-            aux_num = round(x[i],2)
-            tfr2.value += "X" + str(i+1) + ": " + str(aux_num) + "\n"
-
     def aleatorio_matriz (e):
         verificar = tfi.value
         if verificar.isdigit():
@@ -233,10 +216,7 @@ def main (page:Page):
             mx = np.zeros((c,c+1))
             mr = np.zeros(c)
             tfr1.value = ""
-
-            for i in range (len(mx)):
-                for j in range(len(mx[0])):
-                    mx[i][j] = randint(1,100)
+            num(mx)
             
             aux = len(mx[0]) -1
             aux2 = len(mx[0])
@@ -287,7 +267,6 @@ def main (page:Page):
 
     t2 = Container(ft.Column([contpr,cont1v,cont2]),visible=False)
 
-
     page.add(
         Container(
             margin= margin.only(
@@ -299,5 +278,4 @@ def main (page:Page):
         )
     )
     
-
 ft.app(target = main)
