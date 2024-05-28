@@ -19,3 +19,16 @@ while num != 0:
     invertido = invertido*10 + ultimo
     num = num // 10
 print(invertido)
+
+#Agregar por forma recursivo:
+def invertir (n,i):
+    if n != 0:
+        ultimo = n%10
+        i = i*10 + ultimo
+        return invertir(n//10,i)
+    else:
+        return i
+    
+n2 = 258
+i = 0
+print(invertir(n2,i))
