@@ -1,7 +1,7 @@
 #Practica para matplotlib 3D
 
-#Importar la libreria
-import matplotlib as plt
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 #Ingreso
@@ -16,3 +16,16 @@ distancia = np.sqrt(np.sum(errado**2))
 #Salida
 print(errado)
 print(distancia)
+
+#Grafica
+fig = plt.figure()
+grafica = fig.add_subplot(111, projection = '3d')
+
+#Punto en el espacio
+[x,y,z] = x0
+grafica.scatter(x,y,z, c='blue', marker = 'o', label = 'x0')
+grafica.set_xlabel('eje x')
+grafica.set_ylabel('eje y')
+grafica.set_zlabel('eje z')
+
+plt.show()
